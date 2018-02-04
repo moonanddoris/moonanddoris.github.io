@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Moonanddoris">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="在上一篇，我们总结了对闭包使用的理解。其中，闭包的一个应用场景，就是装饰器。 “装饰器”在软件设计中，指的是一种设计模式。装饰器模式可以动态的修饰函数、方法或者类，而并不需要修改被装饰者的内部代码。python中的装饰器，本质思想和以上描述的是一致的。我们可以使用装饰器，在一类函数、方法或类执行前后，统一的做一些处理。常见的例子有，类方法@classmethod 类静态方法@staticmetho">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python装饰器的使用（一）">
+<meta property="og:url" content="http://yoursite.com/2018/02/04/python-decorator1/index.html">
 <meta property="og:site_name" content="Moonanddoris">
+<meta property="og:description" content="在上一篇，我们总结了对闭包使用的理解。其中，闭包的一个应用场景，就是装饰器。 “装饰器”在软件设计中，指的是一种设计模式。装饰器模式可以动态的修饰函数、方法或者类，而并不需要修改被装饰者的内部代码。python中的装饰器，本质思想和以上描述的是一致的。我们可以使用装饰器，在一类函数、方法或类执行前后，统一的做一些处理。常见的例子有，类方法@classmethod 类静态方法@staticmetho">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-04T11:03:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Moonanddoris">
+<meta name="twitter:title" content="python装饰器的使用（一）">
+<meta name="twitter:description" content="在上一篇，我们总结了对闭包使用的理解。其中，闭包的一个应用场景，就是装饰器。 “装饰器”在软件设计中，指的是一种设计模式。装饰器模式可以动态的修饰函数、方法或者类，而并不需要修改被装饰者的内部代码。python中的装饰器，本质思想和以上描述的是一致的。我们可以使用装饰器，在一类函数、方法或类执行前后，统一的做一些处理。常见的例子有，类方法@classmethod 类静态方法@staticmetho">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/04/python-decorator1/"/>
 
 
 
 
 
-  <title>Moonanddoris</title>
+  <title>python装饰器的使用（一） | Moonanddoris</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/04/python-decorator1/" itemprop="url">python装饰器的使用（一）</a></h1>
+          <h1 class="post-title" itemprop="name headline">python装饰器的使用（一）</h1>
         
 
         <div class="post-meta">
@@ -298,9 +299,7 @@
       
 
       
-        
-          
-            <p>在上一篇，我们总结了对闭包使用的理解。其中，闭包的一个应用场景，就是装饰器。</p>
+        <p>在上一篇，我们总结了对闭包使用的理解。其中，闭包的一个应用场景，就是装饰器。</p>
 <p>“装饰器”在软件设计中，指的是一种设计模式。装饰器模式可以动态的修饰函数、方法或者类，而并不需要修改被装饰者的内部代码。<br>python中的装饰器，本质思想和以上描述的是一致的。我们可以使用装饰器，在一类函数、方法或类执行前后，统一的做一些处理。<br>常见的例子有，类方法@classmethod 类静态方法@staticmethod 类属性@property<br>实际应用场景：增加日志、性能分析、鉴权等。<br>按照被装饰者来分类，可以分为函数装饰器和类装饰器。</p>
 <h3 id="函数装饰器"><a href="#函数装饰器" class="headerlink" title="函数装饰器"></a>函数装饰器</h3><p>函数装饰器，即用来装饰函数或者类方法的装饰器。装饰器可以以函数或者类的方式定义，下面是常见的几种使用方法。<br>直接上例子：</p>
 <h4 id="1-函数装饰函数"><a href="#1-函数装饰函数" class="headerlink" title="1.函数装饰函数"></a>1.函数装饰函数</h4><p>定义一个日志记录的函数，在函数调用前后打印日志：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> func.__name__ + <span class="string">" called!"</span></span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line">    </span><br><span class="line"><span class="meta">@log</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"I'm test"</span></span><br><span class="line"></span><br><span class="line">test()</span><br></pre></td></tr></table></figure></p>
@@ -317,8 +316,6 @@
 <p>输出如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">I<span class="string">'m test</span></span><br><span class="line"><span class="string">args: (2,)</span></span><br><span class="line"><span class="string">kwargs: &#123;'</span>k2<span class="string">': '</span>xyz<span class="string">'&#125;</span></span><br><span class="line"><span class="string">test run finished!</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a href="https://book.douban.com/subject/3112503/" target="_blank" rel="noopener">Python核心编程第二版</a><br><a href="http://python3-cookbook.readthedocs.io/zh_CN/latest/c09/p01_put_wrapper_around_function.html" target="_blank" rel="noopener">Python Cookbook</a><br><a href="http://www.ctolib.com/topics/46314.html" target="_blank" rel="noopener">Python装饰器基础详解</a>  </p>
 
-          
-        
       
     </div>
     
@@ -335,139 +332,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/24/python-closure/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="moonanddoris">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moonanddoris">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/24/python-closure/" itemprop="url">python闭包的理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T23:03:18+08:00">
-                2018-01-24
-              </time>
+              <a href="/2018/01/24/python-closure/" rel="next" title="python闭包的理解">
+                <i class="fa fa-chevron-left"></i> python闭包的理解
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>闭包这个概念，之前在使用PHP和JavaScript的时候接触过，看了几篇文章了解了下，看完之后似懂非懂。现在使用python装饰器的时候，又遇到了这个概念，决定整理下这个知识点。</p>
-<h2 id="闭包的定义"><a href="#闭包的定义" class="headerlink" title="闭包的定义"></a>闭包的定义</h2><p>一个函数内 定义了一个内部函数，内部函数中直接引用了，外部函数中定义的局部变量，这个被引用的变量和内部函数，相对于外部函数形成了一个闭包（closure）。</p>
-<h2 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性"></a>主要特性</h2><p>被内部函数引用的外部局部变量 存在于一个特殊的域（既不是全局域，也不是外部函数或内部函数的局部域），它不会随着调用的结束而释放</p>
-<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>1.最经典的应用是装饰器<br>2.可以抽象出一些模型，简洁方便，来替代类的使用</p>
-<h3 id="下面看几个例子："><a href="#下面看几个例子：" class="headerlink" title="下面看几个例子："></a>下面看几个例子：</h3><p>第一个是经典的计数器，我们做下改动，每次计数的增量是可以调节的：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">counter</span><span class="params">(start_at=<span class="number">0</span>)</span>:</span></span><br><span class="line">    count = [start_at]</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">incr</span><span class="params">(increment=<span class="number">1</span>)</span>:</span></span><br><span class="line">        count[<span class="number">0</span>] += increment</span><br><span class="line">        <span class="keyword">return</span> count[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> incr</span><br><span class="line"></span><br><span class="line">count = counter(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">print</span> count() <span class="comment">#11</span></span><br><span class="line"><span class="keyword">print</span> count() <span class="comment">#12</span></span><br><span class="line"><span class="keyword">print</span> count(<span class="number">2</span>) <span class="comment">#14</span></span><br><span class="line"><span class="keyword">print</span> count(<span class="number">3</span>) <span class="comment">#17</span></span><br></pre></td></tr></table></figure></p>
-<h5 id="count-这个变量在闭包创建后的每次调用，都保存下来了，只要这个闭包还存在，对于“闭包变量”的引用就不会销毁"><a href="#count-这个变量在闭包创建后的每次调用，都保存下来了，只要这个闭包还存在，对于“闭包变量”的引用就不会销毁" class="headerlink" title="count 这个变量在闭包创建后的每次调用，都保存下来了，只要这个闭包还存在，对于“闭包变量”的引用就不会销毁"></a><em>count 这个变量在闭包创建后的每次调用，都保存下来了，只要这个闭包还存在，对于“闭包变量”的引用就不会销毁</em></h5><p>第二个是画直线的问题：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">line</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(x)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> a*x+b</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line">test1 = line(<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line"><span class="keyword">print</span> test1(<span class="number">20</span>) <span class="comment">#61</span></span><br><span class="line"></span><br><span class="line">test2 = line(<span class="number">5</span>,<span class="number">4</span>)</span><br><span class="line"><span class="keyword">print</span> test2(<span class="number">10</span>) <span class="comment">#54</span></span><br></pre></td></tr></table></figure></p>
-<h5 id="输入参数-a-b-定义了一个直线模型的斜率和偏移量，输入x变量，即可得到y变量。这个例子，很好说明了，如果抽象模型简单的话，使用闭包比使用类来实现更简洁"><a href="#输入参数-a-b-定义了一个直线模型的斜率和偏移量，输入x变量，即可得到y变量。这个例子，很好说明了，如果抽象模型简单的话，使用闭包比使用类来实现更简洁" class="headerlink" title="输入参数 a,b 定义了一个直线模型的斜率和偏移量，输入x变量，即可得到y变量。这个例子，很好说明了，如果抽象模型简单的话，使用闭包比使用类来实现更简洁"></a><em>输入参数 a,b 定义了一个直线模型的斜率和偏移量，输入x变量，即可得到y变量。这个例子，很好说明了，如果抽象模型简单的话，使用闭包比使用类来实现更简洁</em></h5><p>第三个我们来理解下，其它文章中经常说到的闭包的使用场景：“数据隐藏”:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hide</span><span class="params">()</span>:</span></span><br><span class="line">    data = &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(key, val=None)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> val <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> data.get(key)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            data[key] = val</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line">test = hide()</span><br><span class="line">test(<span class="string">"a"</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">print</span> test(<span class="string">"a"</span>) <span class="comment">#1</span></span><br><span class="line">test(<span class="string">"a"</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">print</span> test(<span class="string">"a"</span>) <span class="comment">#2</span></span><br></pre></td></tr></table></figure></p>
-<h5 id="data相当于私有成员变量，无法直接访问，需要使用提供的方法来获取和赋值"><a href="#data相当于私有成员变量，无法直接访问，需要使用提供的方法来获取和赋值" class="headerlink" title="data相当于私有成员变量，无法直接访问，需要使用提供的方法来获取和赋值"></a><em>data相当于私有成员变量，无法直接访问，需要使用提供的方法来获取和赋值</em></h5><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a href="https://www.geeksforgeeks.org/python-closures/" target="_blank" rel="noopener">Python Closures</a><br><a href="http://www.cnblogs.com/Frank-C/p/4964999.html" target="_blank" rel="noopener">JavaScript之再谈回调与闭包</a><br><a href="https://www.jianshu.com/p/3ce0d46e2b31" target="_blank" rel="noopener">Python 闭包与作用域</a><br><a href="https://www.cnblogs.com/lirunzhou/p/5881812.html" target="_blank" rel="noopener">python闭包的理解说明</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -477,389 +363,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/14/githubpages-hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="moonanddoris">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moonanddoris">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/14/githubpages-hexo/" itemprop="url">mac环境下搭建github pages + hexo 个人博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-14T21:15:21+08:00">
-                2018-01-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.确保mac下已安装git 和node</p>
-<p>2.Hexo<br>安装：<br>sudo npm install -g hexo-cli</p>
-<p>初始化：<br>hexo init hexo</p>
-<p>进入hexo目录：<br>cd hexo<br>npm install</p>
-<p>开启服务：<br>hexo s</p>
-<p>3.Github创建项目<br>github下创建  username.github.io 的项目</p>
-<p>在hexo目录下，打开_config.yml文件，进行修改配置<br>deploy:<br>  type: git<br>  repository: <a href="https://github.com/username/username.github.io.git" target="_blank" rel="noopener">https://github.com/username/username.github.io.git</a><br>  branch: master</p>
-<p>执行以下命令：<br>hexo clean<br>hexo generate<br>hexo deploy</p>
-<p>打开浏览器，输入:username.github.io，即可看见自己的博客</p>
-<p>参考文章：<br><a href="https://zhuanlan.zhihu.com/p/26401542" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26401542</a><br><a href="https://zhuanlan.zhihu.com/p/22632478" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/22632478</a><br><a href="https://segmentfault.com/a/1190000004947261" target="_blank" rel="noopener">https://segmentfault.com/a/1190000004947261</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/hello/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="moonanddoris">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moonanddoris">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/hello/" itemprop="url">开篇－写给自己</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T23:59:40+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>入行互联网行业，有2年半的时间了。入行时怀揣着对这个行业的好奇和敬畏，心中有一个梦想，希望自己可以变成别人眼中的geek和大牛。<br>因为第一份工作是在传统的通信行业，自己本身又不是cs专业出身，很多计算机技能并没有很好的掌握；因为一个偶然的机会，在选择第二份工作的时候，进入了互联网公司。<br>工作中需要很多方面的新知识，新的开发语言，http协议，数据库，缓存等方面的知识，一时间感觉自己需要补充的东西太多了，感到很焦虑，然后就找一些书和博客开始学习；后来工作需要，又更换了别的开发语言，自己想做的业务方向也没有想清楚，领导布置哪块就做哪块，需要哪些知识就学习哪些知识，导致自己没有足够的专注度，看似学习了很多东西，但是都没有深入，只是停留在使用过、比较浅显的层面上。而且自己学习的时候没有一个好的方法和习惯，比如看完博客和书，弄明白会使用了就OK了，最多写个简单的备忘录。过一段时间之后，对之前学习的东西可能就记不清楚了。</p>
-<p>这样就造成了一个恶性循环：觉得自己技术很菜，感到焦虑－急于恶补知识－缺乏足够专注度－技术成长慢，感到焦虑</p>
-<p>现在意识到这个问题还不算迟，有句话说得好：改变永远不会太晚！<br>如何改变呢？先从下面的做起：<br>1.对平时工作中和个人学习过程中的知识，多思考，多写博客总结<br>2.多和之前同事、同学交流，了解下外面的技术</p>
-<h3 id="先写这么多吧。谨以此篇献给自己，希望自己一直保持学习的姿态，提高专注度和执行力，变得更有想法，变得更强！"><a href="#先写这么多吧。谨以此篇献给自己，希望自己一直保持学习的姿态，提高专注度和执行力，变得更有想法，变得更强！" class="headerlink" title="先写这么多吧。谨以此篇献给自己，希望自己一直保持学习的姿态，提高专注度和执行力，变得更有想法，变得更强！"></a>先写这么多吧。谨以此篇献给自己，希望自己一直保持学习的姿态，提高专注度和执行力，变得更有想法，变得更强！</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="moonanddoris">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Moonanddoris">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/12/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T23:41:00+08:00">
-                2018-01-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -867,6 +375,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -887,8 +399,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -930,6 +451,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数装饰器"><span class="nav-number">1.</span> <span class="nav-text">函数装饰器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-函数装饰函数"><span class="nav-number">1.1.</span> <span class="nav-text">1.函数装饰函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-函数装饰类方法"><span class="nav-number">1.2.</span> <span class="nav-text">2.函数装饰类方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-类装饰函数"><span class="nav-number">1.3.</span> <span class="nav-text">3.类装饰函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-类装饰类方法"><span class="nav-number">1.4.</span> <span class="nav-text">4.类装饰类方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章"><span class="nav-number">2.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1063,6 +600,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
